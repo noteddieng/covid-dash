@@ -1,8 +1,7 @@
-import bs4 
-import flask
 import requests
 import schedule
 import time
+import csv
 
 
 from datetime import date
@@ -23,11 +22,12 @@ def update_url():
 
 def get_request(url):
     # Today date not working, need to revisit
+
     today_date = date.today().strftime("%m-%d-%y")
     try:
 
         request = requests.get(url, timeout=10)
-        open("{date}", "wb").write(request.content).format(date=today_date)
+        open("%s.csv" % today_date, "wb").write(request.content)
 
     except Timeout:
         print("Timeout raised")
@@ -35,9 +35,9 @@ def get_request(url):
 get_request(url)
         
 
-#schedule.every().day.at("21:30").do(get_request, url)
+schedule.every().day.at("21:30").do(get_request, url)
 
 
-#while True:
-    #schedule.run_pending()
-    #time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
