@@ -1,7 +1,6 @@
 import requests
 import schedule
 import time
-import csv
 
 from datetime import date
 from datetime import datetime
@@ -11,6 +10,7 @@ from requests.exceptions import Timeout
 
 # Token - DELETE: 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
 
+# Set global variables
 global today_date
 global yesterday
 
@@ -48,9 +48,13 @@ def get_request():
 
             print(requests.exceptions.HTTPError)
             
-            new_request = requests.get(reupdate_url(), timeout = 10)
+            # Bit of error handling here, if the request is bad, i'll try to use the data from the day before.
+
+            second_req_attempt = requests.get(reupdate_url(), timeout = 10)
             print(reupdate_url())
-            open("%s.csv" % yesterday, "wb").write(new_request.content)
+
+            # Important to write the response from the second request instead of the first request to the new csv lol
+            open("%s.csv" % yesterday, "wb").write(second_req_attempt.content)
                 
     
     except Timeout:

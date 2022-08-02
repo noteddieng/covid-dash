@@ -45,9 +45,9 @@ def reupdate_url():
 
     yesterday = yesterday.strftime("%m-%d-%Y")
     
-    url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv".format(yesterday = yesterday)
-    print(url)
+    reupdated_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv".format(yesterday = yesterday)
+    
+    return reupdated_url
 
 
 
-reupdate_url()
