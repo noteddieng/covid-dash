@@ -3,7 +3,9 @@ from urllib.error import HTTPError
 import requests
 
 from requests import Timeout
+from datetime import datetime
 from datetime import date
+from datetime import timedelta
 
 global today_date
 
@@ -27,13 +29,25 @@ def get_request():
         
         try:
             req_status = request.raise_for_status()
-            print('Success')
+            open("%s.csv" % today_date, "wb").write(request.content)
 
         except requests.exceptions.HTTPError:
 
             print(requests.exceptions.HTTPError)
+            
     
     except Timeout:
         print("Timeout raised")
 
-get_request()
+def reupdate_url():
+    
+    yesterday = datetime.today() - timedelta(days=1)
+
+    yesterday = yesterday.strftime("%m-%d-%Y")
+    
+    url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/{yesterday}.csv".format(yesterday = yesterday)
+    print(url)
+
+
+
+reupdate_url()
