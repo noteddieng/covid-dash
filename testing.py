@@ -6,3 +6,8 @@ def update_url():
 
     return url
 
+def print_url():
+
+    print(update_url())
+
+print_url()
