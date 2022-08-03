@@ -1,6 +1,9 @@
 from abc import update_abstractmethods
 from urllib.error import HTTPError
+from venv import create
 import requests
+import pandas as pd
+import io
 
 from requests import Timeout
 from datetime import datetime
@@ -51,3 +54,15 @@ def reupdate_url():
 
 
 
+def create_dataframe():
+    df = pd.read_csv(update_url())
+    return df
+
+
+def print_df():
+    print(update_url())
+    print(create_dataframe())
+
+
+
+print(create_dataframe())
