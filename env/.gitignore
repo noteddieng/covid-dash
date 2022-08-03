@@ -1,0 +1,5 @@
+# created by virtualenv automatically
+*.log
+Terminal\ Saved\ Output.txt
+scraper.ipynb
+mapping.ipynb

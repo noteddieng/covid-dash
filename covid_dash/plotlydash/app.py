@@ -8,7 +8,8 @@ from dash import Dash
 from .data import create_dataframe
 from .layout import html_layout
 
-def init_dashboard(server):
+
+def create_dashboard(server):
     dash_app = dash.Dash(
         server=server, 
         routes_pathname_prefix='/dashapp/', 

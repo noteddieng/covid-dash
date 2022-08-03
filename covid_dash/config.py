@@ -2,10 +2,13 @@ from os import environ
 from os import path 
 from dotenv import load_dotenv
 
-class Config:
+basedir = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(basedir, '.env'))
 
-    basedir = path.abspath(path.dirname(__file__))
-    load_dotenv(path.join(basedir, '.env'))
+class Config:
+    SECRET_KEY = environ.get('SECRET_KEY')
+    STATIC_FOLDER = 'static'
+    TEMPLATES_FOLDER = 'templates'
 
     # Fill in later with Secret Key, Cookies, anything else
 
